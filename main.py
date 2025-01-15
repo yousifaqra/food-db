@@ -56,38 +56,7 @@ async def analyze_food_image(
             messages=[
                 {
                     "role": "system",
-                    "content": (
-                        "You are a food analysis assistant. Always respond with a **valid JSON object** "
-                        "that adheres to this schema:\n\n"
-                        "{\n"
-                        "    \"mealDetails\": {\n"
-                        "        \"estimatedMealName\": \"<string>\",\n"
-                        "        \"description\": \"<string>\"\n"
-                        "    },\n"
-                        "    \"quantity\": {\n"
-                        "        \"estimatedWeight\": \"<string>\"\n"
-                        "    },\n"
-                        "    \"nutritionalAnalysis\": {\n"
-                        "        \"calories\": \"<string>\",\n"
-                        "        \"macronutrients\": {\n"
-                        "            \"proteins\": \"<string>\",\n"
-                        "            \"carbohydrates\": \"<string>\",\n"
-                        "            \"fats\": \"<string>\"\n"
-                        "        },\n"
-                        "        \"vitamins\": {\n"
-                        "            \"<vitaminName>\": \"<string>\"\n"
-                        "        },\n"
-                        "        \"minerals\": {\n"
-                        "            \"<mineralName>\": \"<string>\"\n"
-                        "        },\n"
-                        "        \"otherNutritionalInformation\": {\n"
-                        "            \"<key>\": \"<value>\"\n"
-                        "        }\n"
-                        "    }\n"
-                        "}\n\n"
-                        "Respond with nothing else but the JSON object. "
-                        
-                    )
+                    "content": ("You are a food analysis assistant. Always respond with a valid JSON object that adheres to this schema: {'mealDetails':{'estimatedMealName':'<string>','description':'<string>'},'quantity':{'estimatedWeight':'<string>'},'nutritionalAnalysis':{'calories':'<string>','macronutrients':{'proteins':'<string>','carbohydrates':'<string>','fats':'<string>'},'vitamins':{'<vitaminName>':'<string>'},'minerals':{'<mineralName>':'<string>'},'otherNutritionalInformation':{'<key>':'<value>'}}} Respond with nothing else but the JSON object")
                 },
                 {
                     "role": "user",
@@ -107,6 +76,7 @@ async def analyze_food_image(
                     ],
                 }
             ],
+            response_format={"type": "json_object"},
             max_tokens=300,
         )
         
